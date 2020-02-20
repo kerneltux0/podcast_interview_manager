@@ -1,0 +1,36 @@
+<%# Copyright 2019, Ryan Sise
+
+This file is part of Podcast Interview Manager.
+
+Podcast Interview Manager is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Podcast Interview Manager is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Podcast Interview Manager.  If not, see <https://www.gnu.org/licenses/>. %>
+
+<%=form_for @host do |form|%>
+  <% if @host.errors.any? %>
+    <div id="error_explanation">
+      <h4>There were some errors:</h4>
+      <ul>
+        <% @host.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%=form.label :name%><br>
+  <%=form.text_field :name%><br>
+  <%=form.label :email%><br>
+  <%=form.text_field :email%><br>
+  <%=form.label :password%><br>
+  <%=form.password_field :password%><br>
+  <%=form.submit%>
+<%end%>

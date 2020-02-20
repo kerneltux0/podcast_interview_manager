@@ -1,0 +1,65 @@
+<%# Copyright 2019, Ryan Sise
+
+This file is part of Podcast Interview Manager.
+
+Podcast Interview Manager is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Podcast Interview Manager is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Podcast Interview Manager.  If not, see <https://www.gnu.org/licenses/>. %>
+
+<h1><%="#{@show.title}"%><br></h1>
+<br>
+<br>
+<%=link_to 'Return Home', host_path(@host)%>
+<br>
+<br>
+<h3>Description:</h3>
+<%=@show.description%><br>
+<br>
+<br>
+<h3>Category:</h3>
+<%=@show.category%><br>
+<br>
+<br>
+<h3>URL:</h3>
+<%=@show.url%><br>
+<br>
+<br>
+<h3>Duration:</h3>
+<%=@show.duration%><br>
+<br>
+<%=button_to 'Edit This Show', edit_host_show_path(@show), method: 'get'%><br>
+<br>
+<%=button_to 'Delete This Show', host_show_path(@host, @show, @interview), :data => {confirm: 'Are you sure?'}, :method => :delete%>
+<br>
+<h3>Pending Interviews</h3>
+<ul>
+  <%@interviews.pending.each do |interview_info|%>
+    <li><%=link_to interview_info.date, host_show_interview_path(@host, @show, interview_info)%>--<%=interview_info.guest.name%></li>
+  <%end%>
+</ul>
+<br>
+<h3>Recorded Interviews</h3>
+<ul>
+  <%@interviews.was_recorded.each do |interview_info|%>
+    <li><%=link_to interview_info.date, host_show_interview_path(@host, @show, interview_info)%>--<%=interview_info.guest.name%></li>
+  <%end%>
+</ul>
+<br>
+<h3>Published Interviews</h3>
+<ul>
+  <%@interviews.is_published.each do |interview_info|%>
+    <li><%=link_to interview_info.date, host_show_interview_path(@host, @show, interview_info)%>--<%=interview_info.guest.name%></li>
+  <%end%>
+</ul>
+<br>
+<%=button_to 'Setup Interview', new_host_show_interview_path(@host, @show, @interview), method: 'get'%><br>
+<br>

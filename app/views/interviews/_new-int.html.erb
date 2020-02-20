@@ -1,0 +1,64 @@
+<%# Copyright 2019, Ryan Sise
+
+This file is part of Podcast Interview Manager.
+
+Podcast Interview Manager is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Podcast Interview Manager is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Podcast Interview Manager.  If not, see <https://www.gnu.org/licenses/>. %>
+
+<%=form_for(@interview, url: host_show_interviews_path) do |form|%>
+  <% if @interview.errors.any? %>
+    <div id="error_explanation">
+      <h4>There were some errors:</h4>
+      <ul>
+        <% @interview.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  Interview Data:<br>
+  <br>
+  <%=form.label :date%><br>
+  <%=form.text_field :date%><br>
+  <br>
+  <%=form.label :start_time%><br>
+  <%=form.text_field :start_time%><br>
+  <br>
+  <%=form.label :end_time%><br>
+  <%=form.text_field :end_time%><br>
+  <%=form.fields_for :guest, @interview.build_guest do |guest_form|%>
+    <% if @guest.errors.any? %>
+    <div id="error_explanation">
+      <h4>There were some errors:</h4>
+      <ul>
+        <% @guest.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <br>
+    Guest Data:<br>
+    <br>
+    <%=guest_form.label :name%><br>
+    <%=guest_form.text_field :name%><br>
+    <br>
+    <%=guest_form.label :email%><br>
+    <%=guest_form.text_field :email%><br>
+    <br>
+    <%=guest_form.label :expertise%><br>
+    <%=guest_form.text_field :expertise%><br>
+    <br>
+  <%end%>
+  <%=form.submit%>
+<%end%>

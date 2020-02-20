@@ -1,0 +1,38 @@
+<%# Copyright 2019, Ryan Sise
+
+This file is part of Podcast Interview Manager.
+
+Podcast Interview Manager is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Podcast Interview Manager is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Podcast Interview Manager.  If not, see <https://www.gnu.org/licenses/>. %>
+
+<h1>Your Homepage</h1>
+<br>
+<br>
+<%=@host.name%><br>
+<%=@host.email%><br>
+<br>
+<br>
+<h2>Your Podcasts!</h2>
+<ul>
+  <%@shows.each do |podcast|%>
+    <li><%=link_to podcast.title, host_show_path(podcast.host_id, podcast.id)%></li>
+  <%end%>
+</ul>
+<br>
+<%=button_to 'Create New Show', new_host_show_path(@host), method: 'get'%><br>
+<br>
+<%=button_to 'Logout', logout_path, :method => :post%>
+<br>
+<br>
+<br>
+<%=button_to 'Delete My Account', host_path(@host), :data => {confirm: 'Are you sure?'}, :method => :delete%>
