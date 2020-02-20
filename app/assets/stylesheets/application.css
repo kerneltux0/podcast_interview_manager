@@ -107,10 +107,6 @@ img
 	text-transform: uppercase;
 }
 
-#body
-{
-}
-
 #right
 {
 	overflow:				hidden;
@@ -219,7 +215,6 @@ span.initial
 {
 	font-family: jaf-bernino-sans-condensed, helvetica, arial, sans-serif;
 	display: inline-block;
-	float: left;
 	margin-right: 15px;
 	font-size: 25px;
 	font-size: 25px;
@@ -437,16 +432,11 @@ blockquote
 	width: 54.41%;
 }
 
-nav#footernav
-{
-}
-
 nav#footernav ul
 {
 	list-style-type:		none;
 	margin:					0px 0px 1em;
 	padding:				0px;
-	overflow:				hidden;
 
 	line-height:			13px;
 	font-family:			tahoma,arial,sans-serif;
@@ -528,11 +518,6 @@ label
 label.cb
 {
 	display:				inline;
-}
-
-button
-{
-
 }
 
 
@@ -659,8 +644,6 @@ button
 	border:1px solid #666;
 
 	/* CSS3 styling for latest browsers */
-	-moz-box-shadow:0 0 90px 5px #000;
-	-webkit-box-shadow: 0 0 90px #000;
 }
 
 /* close button positioned on upper right corner */
@@ -828,7 +811,6 @@ nav#pagelinks a.currentpage
 
 	/*	IE < 8 requires these items for the hovers to work	*/
 	width:						200px;
-	vertical-align:				bottom;	/*	fixes 3 pixel gap	*/
 }
 
 /*	submenus	*/
@@ -911,7 +893,6 @@ a.showsub
 	margin-right: 10px;
 	height: 14px;
 	line-height: 14px;
-	float: left;
 }
 
 a#cart-link
@@ -971,8 +952,6 @@ a#account-link {
 	line-height: 1.6em;
 	width:45.29%;
 	display:inline-block;
-x	overflow: hidden;
-	overflow: visible;
 }
 
 #product-details header h3
@@ -1290,7 +1269,6 @@ body #right .album {
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
   -webkit-appearance: none;
-  -webkit-border-radius: 0;
 }
 
 .play-song
@@ -1318,7 +1296,6 @@ nav#letters li
 	display:					inline;
 	margin:						0px;
 	padding:					0px;
-	float:left;
 }
 
 nav#letters li
@@ -1600,7 +1577,6 @@ form .morelink
 .selector label
 {
 	display: block;
-	vertical-align: middle;
 	line-height: 1.5em;
 	margin-bottom:5px;	
 }
@@ -1673,7 +1649,6 @@ form .morelink
 {
 	float: left;
 	margin-right: 20px;
-	margin bottom: 5px;
 }
 
 .news-item
@@ -1986,12 +1961,6 @@ this element is the one that *you* will style the most.
 	padding-top:169px;
 }
 
-#image-overlay.slides .next,
-#image-overlay.slides .back
-{
-	.tile { margin-left: 0!important;clear:both; }
-}
-
 
 #image-overlay.slides .back {
 	background:url('/site/images/scrollable_left.png') no-repeat center center;
@@ -2036,7 +2005,6 @@ this element is the one that *you* will style the most.
 #store-filter-nav .toggle-trigger2
 {
 	display: inline-block;
-	float: left;
 	padding: 5px 6px;
 	line-height: 18px;
 	font-family: Lato, verdana, sans-serif;
