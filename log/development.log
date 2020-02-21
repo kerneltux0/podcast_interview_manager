@@ -19325,3 +19325,693 @@ Processing by WelcomeController#home as HTML
 Completed 200 OK in 223ms (Views: 217.8ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/" for 127.0.0.1 at 2020-02-21 08:58:25 -0700
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/ryan/.rvm/gems/ruby-2.6.1/gems/activerecord-5.2.4.1/lib/active_record/log_subscriber.rb:98
+Processing by WelcomeController#home as HTML
+  Rendering welcome/home.html.erb within layouts/application
+  Rendered welcome/_links.html.erb (0.5ms)
+  Rendered welcome/home.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 227ms (Views: 222.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2020-02-21 08:58:28 -0700
+Processing by HostsController#new as HTML
+  Rendering hosts/new.html.erb within layouts/application
+  Rendered hosts/_new-host.html.erb (15.1ms)
+  Rendered hosts/new.html.erb within layouts/application (16.1ms)
+Completed 200 OK in 41ms (Views: 30.8ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/hosts" for 127.0.0.1 at 2020-02-21 08:58:52 -0700
+Processing by HostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"D73GYrfRdNqe6pavR+3paKte6w9X2Vz9ud773Tq6/5BouXlEYtP9Lcb0ItqhxPkBwFCjcthmZ7A3p5F7N3BRtg==", "host"=>{"name"=>"Test User", "email"=>"testing@example.com", "password"=>"[FILTERED]"}, "commit"=>"Create Host"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/hosts_controller.rb:26
+  [1m[36mHost Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "hosts" WHERE "hosts"."email" = ? LIMIT ?[0m  [["email", "testing@example.com"], ["LIMIT", 1]]
+  ↳ app/controllers/hosts_controller.rb:26
+  [1m[36mHost Create (0.5ms)[0m  [1m[32mINSERT INTO "hosts" ("name", "email", "password_digest") VALUES (?, ?, ?)[0m  [["name", "Test User"], ["email", "testing@example.com"], ["password_digest", "$2a$12$9Jh1gIQZUJPO5PYqt1rqp..YghHPAqz7D00iHTpfwqv3.pWxzPF/G"]]
+  ↳ app/controllers/hosts_controller.rb:26
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/hosts_controller.rb:26
+Redirected to http://localhost:3000/login
+Completed 302 Found in 230ms (ActiveRecord: 5.1ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2020-02-21 08:58:52 -0700
+Processing by SessionsController#new as HTML
+  Rendering hosts/login.html.erb within layouts/application
+  Rendered hosts/_login-form.html.erb (0.7ms)
+  Rendered hosts/login.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 15ms (Views: 14.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2020-02-21 08:59:02 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5DMm9vXNaUoxAFyGCx0ljSjhAvMtP2Be1iB+k7YoODuDN5nQIM/gvWke6PPtNDXkQ+9KjqKAWxNYWRQ1u+KWHQ==", "host"=>{"email"=>"testing@example.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mHost Load (0.2ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."email" = ? LIMIT ?[0m  [["email", "testing@example.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:55
+Redirected to http://localhost:3000/hosts/1
+Completed 302 Found in 224ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/hosts/1" for 127.0.0.1 at 2020-02-21 08:59:02 -0700
+Processing by HostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/hosts_controller.rb:54
+  Rendering hosts/show.html.erb within layouts/application
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT "shows".* FROM "shows" WHERE "shows"."host_id" = ?[0m  [["host_id", 1]]
+  ↳ app/views/hosts/show.html.erb:27
+  Rendered hosts/show.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 39ms (Views: 18.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/hosts/1/shows/new" for 127.0.0.1 at 2020-02-21 08:59:05 -0700
+Processing by ShowsController#new as HTML
+  Parameters: {"host_id"=>"1"}
+  [1m[36mHost Load (0.2ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:22
+  Rendering shows/new.html.erb within layouts/application
+  Rendered shows/_new-form.html.erb (3.8ms)
+  Rendered shows/new.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 33ms (Views: 18.0ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/hosts/1/shows" for 127.0.0.1 at 2020-02-21 08:59:20 -0700
+Processing by ShowsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aUwHwomng5nOAR6zi4RMbiIk7MvOO/J2CJ1csSPNunMOSLjkXKUKbpYfqsZtrVwHSSqktkGEyTuG5DYXLgcUVQ==", "show"=>{"title"=>"test-cast", "description"=>"oaneuhoetnuhoetnas", "category"=>"onetuheotn", "url"=>"otnuhoenauh", "duration"=>"onetuhneo"}, "commit"=>"Create Show", "host_id"=>"1"}
+  [1m[36mHost Load (0.2ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:31
+Completed 404 Not Found in 3ms (ActiveRecord: 0.3ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Show without an ID):
+  
+app/controllers/shows_controller.rb:32:in `create'
+Started POST "/hosts/1/shows" for 127.0.0.1 at 2020-02-21 09:01:39 -0700
+Processing by ShowsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aUwHwomng5nOAR6zi4RMbiIk7MvOO/J2CJ1csSPNunMOSLjkXKUKbpYfqsZtrVwHSSqktkGEyTuG5DYXLgcUVQ==", "show"=>{"title"=>"test-cast", "description"=>"oaneuhoetnuhoetnas", "category"=>"onetuheotn", "url"=>"otnuhoenauh", "duration"=>"onetuhneo"}, "commit"=>"Create Show", "host_id"=>"1"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:31
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/shows_controller.rb:33
+  [1m[36mShow Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "shows" WHERE "shows"."title" = ? LIMIT ?[0m  [["title", "test-cast"], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:33
+  [1m[36mShow Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "shows" WHERE "shows"."url" = ? LIMIT ?[0m  [["url", "otnuhoenauh"], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:33
+  [1m[36mShow Create (0.2ms)[0m  [1m[32mINSERT INTO "shows" ("title", "description", "category", "url", "duration") VALUES (?, ?, ?, ?, ?)[0m  [["title", "test-cast"], ["description", "oaneuhoetnuhoetnas"], ["category", "onetuheotn"], ["url", "otnuhoenauh"], ["duration", "onetuhneo"]]
+  ↳ app/controllers/shows_controller.rb:33
+  [1m[35m (3.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/shows_controller.rb:33
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/shows_controller.rb:34
+  [1m[36mShow Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "shows" WHERE "shows"."title" = ? AND "shows"."id" != ? LIMIT ?[0m  [["title", "test-cast"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:34
+  [1m[36mShow Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "shows" WHERE "shows"."url" = ? AND "shows"."id" != ? LIMIT ?[0m  [["url", "otnuhoenauh"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:34
+  [1m[36mShow Update (0.1ms)[0m  [1m[33mUPDATE "shows" SET "host_id" = ? WHERE "shows"."id" = ?[0m  [["host_id", 1], ["id", 1]]
+  ↳ app/controllers/shows_controller.rb:34
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/shows_controller.rb:34
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/shows_controller.rb:35
+  [1m[36mHost Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "hosts" WHERE "hosts"."email" = ? AND "hosts"."id" != ? LIMIT ?[0m  [["email", "testing@example.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:35
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/shows_controller.rb:35
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/shows_controller.rb:36
+  [1m[36mShow Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "shows" WHERE "shows"."title" = ? AND "shows"."id" != ? LIMIT ?[0m  [["title", "test-cast"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:36
+  [1m[36mShow Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "shows" WHERE "shows"."url" = ? AND "shows"."id" != ? LIMIT ?[0m  [["url", "otnuhoenauh"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:36
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/shows_controller.rb:36
+Redirected to http://localhost:3000/hosts/1
+Completed 302 Found in 33ms (ActiveRecord: 8.6ms)
+
+
+Started GET "/hosts/1" for 127.0.0.1 at 2020-02-21 09:01:39 -0700
+Processing by HostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/hosts_controller.rb:54
+  Rendering hosts/show.html.erb within layouts/application
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT "shows".* FROM "shows" WHERE "shows"."host_id" = ?[0m  [["host_id", 1]]
+  ↳ app/views/hosts/show.html.erb:27
+  Rendered hosts/show.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 33ms (Views: 31.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/hosts/1/shows/1" for 127.0.0.1 at 2020-02-21 09:01:47 -0700
+Processing by ShowsController#show as HTML
+  Parameters: {"host_id"=>"1", "id"=>"1"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:57
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:58
+  Rendering shows/show.html.erb within layouts/application
+  [1m[36mInterview Load (0.3ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."recorded" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["recorded", 0], ["published", 0]]
+  ↳ app/views/shows/show.html.erb:45
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."recorded" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["recorded", 1], ["published", 0]]
+  ↳ app/views/shows/show.html.erb:52
+  [1m[36mInterview Load (0.2ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["published", 1]]
+  ↳ app/views/shows/show.html.erb:59
+  Rendered shows/show.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 41ms (Views: 18.0ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/hosts/1/shows/1/edit" for 127.0.0.1 at 2020-02-21 09:01:53 -0700
+Processing by ShowsController#edit as HTML
+  Parameters: {"host_id"=>"1", "id"=>"1"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:48
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:49
+  Rendering shows/edit.html.erb within layouts/application
+  Rendered shows/_edit-form.html.erb (2.9ms)
+  Rendered shows/edit.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 20ms (Views: 16.3ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/hosts/1/shows/1" for 127.0.0.1 at 2020-02-21 09:02:04 -0700
+Processing by ShowsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"b1OAMfDQcqSXhZRsQtHTsnqLgpVKm/VTHcTCqfSXrWcIVz8XJdL7U8+bIBmk+MPbEYXK6MUkzh6TvagP+V0DQQ==", "show"=>{"title"=>"test-cast", "description"=>"something something", "category"=>"onetuheotn", "url"=>"otnuhoenauh", "duration"=>"onetuhneo"}, "commit"=>"Update Show", "host_id"=>"1", "id"=>"1"}
+  [1m[36mHost Load (0.2ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:68
+  [1m[36mShow Load (0.2ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:69
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/shows_controller.rb:70
+  [1m[36mShow Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "shows" WHERE "shows"."title" = ? AND "shows"."id" != ? LIMIT ?[0m  [["title", "test-cast"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:70
+  [1m[36mShow Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "shows" WHERE "shows"."url" = ? AND "shows"."id" != ? LIMIT ?[0m  [["url", "otnuhoenauh"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:70
+  [1m[36mShow Update (0.3ms)[0m  [1m[33mUPDATE "shows" SET "description" = ? WHERE "shows"."id" = ?[0m  [["description", "something something"], ["id", 1]]
+  ↳ app/controllers/shows_controller.rb:70
+  [1m[35m (7.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/shows_controller.rb:70
+Redirected to http://localhost:3000/hosts/1
+Completed 302 Found in 18ms (ActiveRecord: 8.5ms)
+
+
+Started GET "/hosts/1" for 127.0.0.1 at 2020-02-21 09:02:04 -0700
+Processing by HostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/hosts_controller.rb:54
+  Rendering hosts/show.html.erb within layouts/application
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT "shows".* FROM "shows" WHERE "shows"."host_id" = ?[0m  [["host_id", 1]]
+  ↳ app/views/hosts/show.html.erb:27
+  Rendered hosts/show.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 15ms (Views: 13.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/hosts/1/shows/1" for 127.0.0.1 at 2020-02-21 09:02:06 -0700
+Processing by ShowsController#show as HTML
+  Parameters: {"host_id"=>"1", "id"=>"1"}
+  [1m[36mHost Load (0.2ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:57
+  [1m[36mShow Load (0.2ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:58
+  Rendering shows/show.html.erb within layouts/application
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."recorded" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["recorded", 0], ["published", 0]]
+  ↳ app/views/shows/show.html.erb:45
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."recorded" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["recorded", 1], ["published", 0]]
+  ↳ app/views/shows/show.html.erb:52
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["published", 1]]
+  ↳ app/views/shows/show.html.erb:59
+  Rendered shows/show.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 24ms (Views: 19.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/hosts/1" for 127.0.0.1 at 2020-02-21 09:02:11 -0700
+Processing by HostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mHost Load (0.2ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/hosts_controller.rb:54
+  Rendering hosts/show.html.erb within layouts/application
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT "shows".* FROM "shows" WHERE "shows"."host_id" = ?[0m  [["host_id", 1]]
+  ↳ app/views/hosts/show.html.erb:27
+  Rendered hosts/show.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 16ms (Views: 13.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/hosts/1/shows/1" for 127.0.0.1 at 2020-02-21 09:02:13 -0700
+Processing by ShowsController#show as HTML
+  Parameters: {"host_id"=>"1", "id"=>"1"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:57
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:58
+  Rendering shows/show.html.erb within layouts/application
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."recorded" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["recorded", 0], ["published", 0]]
+  ↳ app/views/shows/show.html.erb:45
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."recorded" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["recorded", 1], ["published", 0]]
+  ↳ app/views/shows/show.html.erb:52
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["published", 1]]
+  ↳ app/views/shows/show.html.erb:59
+  Rendered shows/show.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 22ms (Views: 18.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/hosts/1/shows/1/interviews/new" for 127.0.0.1 at 2020-02-21 09:02:17 -0700
+Processing by InterviewsController#new as HTML
+  Parameters: {"host_id"=>"1", "show_id"=>"1"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:85
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:86
+  Rendering interviews/new.html.erb within layouts/application
+  Rendered interviews/_new-int.html.erb (8.9ms)
+  Rendered interviews/new.html.erb within layouts/application (10.7ms)
+Completed 200 OK in 36ms (Views: 23.4ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/hosts/1/shows/1/interviews" for 127.0.0.1 at 2020-02-21 09:03:18 -0700
+Processing by InterviewsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"HOt7mvNmkCnRoNM+FqXVCZLUWVfpu0bHI5/6gPQkEAJ778S8JmQZ3om+Z0vwjMVg+doRKmYEfYqt5pAm+e6+JA==", "interview"=>{"date"=>"02/23/2020", "start_time"=>"4:00 pm", "end_time"=>"5:00 pm", "guest_attributes"=>{"name"=>"Thor", "email"=>"thor@avengers.com", "expertise"=>"Smashing Stuff"}}, "commit"=>"Create Interview", "host_id"=>"1", "show_id"=>"1"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:85
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:86
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/interviews_controller.rb:35
+  [1m[36mInterview Create (0.2ms)[0m  [1m[32mINSERT INTO "interviews" ("date", "show_id", "start_time", "end_time") VALUES (?, ?, ?, ?)[0m  [["date", "2020-02-23 00:00:00 UTC"], ["show_id", 1], ["start_time", "4:00 pm"], ["end_time", "5:00 pm"]]
+  ↳ app/controllers/interviews_controller.rb:35
+  [1m[36mGuest Create (0.1ms)[0m  [1m[32mINSERT INTO "guests" ("name", "email", "expertise", "interview_id") VALUES (?, ?, ?, ?)[0m  [["name", "Thor"], ["email", "thor@avengers.com"], ["expertise", "Smashing Stuff"], ["interview_id", 1]]
+  ↳ app/controllers/interviews_controller.rb:35
+  [1m[35m (7.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/interviews_controller.rb:35
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/interviews_controller.rb:37
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/interviews_controller.rb:37
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/interviews_controller.rb:38
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/interviews_controller.rb:38
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/interviews_controller.rb:39
+  [1m[36mShow Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "shows" WHERE "shows"."title" = ? AND "shows"."id" != ? LIMIT ?[0m  [["title", "test-cast"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:39
+  [1m[36mShow Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "shows" WHERE "shows"."url" = ? AND "shows"."id" != ? LIMIT ?[0m  [["url", "otnuhoenauh"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:39
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/interviews_controller.rb:39
+Redirected to http://localhost:3000/hosts/1/shows/1
+Completed 302 Found in 20ms (ActiveRecord: 8.9ms)
+
+
+Started GET "/hosts/1/shows/1" for 127.0.0.1 at 2020-02-21 09:03:18 -0700
+Processing by ShowsController#show as HTML
+  Parameters: {"host_id"=>"1", "id"=>"1"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:57
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:58
+  Rendering shows/show.html.erb within layouts/application
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."recorded" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["recorded", 0], ["published", 0]]
+  ↳ app/views/shows/show.html.erb:45
+  [1m[36mGuest Load (0.1ms)[0m  [1m[34mSELECT  "guests".* FROM "guests" WHERE "guests"."interview_id" = ? LIMIT ?[0m  [["interview_id", 1], ["LIMIT", 1]]
+  ↳ app/views/shows/show.html.erb:46
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."recorded" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["recorded", 1], ["published", 0]]
+  ↳ app/views/shows/show.html.erb:52
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["published", 1]]
+  ↳ app/views/shows/show.html.erb:59
+  Rendered shows/show.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 18ms (Views: 15.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/hosts/1/shows/1/interviews/1" for 127.0.0.1 at 2020-02-21 09:03:28 -0700
+Processing by InterviewsController#show as HTML
+  Parameters: {"host_id"=>"1", "show_id"=>"1", "id"=>"1"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:90
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:91
+  [1m[36mInterview Load (0.2ms)[0m  [1m[34mSELECT  "interviews".* FROM "interviews" WHERE "interviews"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:92
+  Rendering interviews/show.html.erb within layouts/application
+  [1m[36mGuest Load (0.1ms)[0m  [1m[34mSELECT  "guests".* FROM "guests" WHERE "guests"."interview_id" = ? LIMIT ?[0m  [["interview_id", 1], ["LIMIT", 1]]
+  ↳ app/views/interviews/_int-info.html.erb:21
+  Rendered interviews/_int-info.html.erb (25.3ms)
+  Rendered interviews/show.html.erb within layouts/application (26.9ms)
+Completed 200 OK in 51ms (Views: 42.2ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/hosts/1/shows/1/interviews/1" for 127.0.0.1 at 2020-02-21 09:03:36 -0700
+Processing by InterviewsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SbGD4KKeI2Cx7R/PLzAD4QtO5YCQHKujpsxvps2vRsuuB9FNl+zLIs+JcQHLeHTcQ6jxpVK9gA093ZfuH1O5Nw==", "interview"=>{"recorded"=>"1", "published"=>"0"}, "commit"=>"Update Interview", "host_id"=>"1", "show_id"=>"1", "id"=>"1"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:90
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:91
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT  "interviews".* FROM "interviews" WHERE "interviews"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:92
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/interviews_controller.rb:65
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:65
+  [1m[36mInterview Update (0.2ms)[0m  [1m[33mUPDATE "interviews" SET "recorded" = ? WHERE "interviews"."id" = ?[0m  [["recorded", 1], ["id", 1]]
+  ↳ app/controllers/interviews_controller.rb:65
+  [1m[35m (7.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/interviews_controller.rb:65
+Redirected to http://localhost:3000/hosts/1/shows/1
+Completed 302 Found in 15ms (ActiveRecord: 8.5ms)
+
+
+Started GET "/hosts/1/shows/1" for 127.0.0.1 at 2020-02-21 09:03:36 -0700
+Processing by ShowsController#show as HTML
+  Parameters: {"host_id"=>"1", "id"=>"1"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:57
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:58
+  Rendering shows/show.html.erb within layouts/application
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."recorded" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["recorded", 0], ["published", 0]]
+  ↳ app/views/shows/show.html.erb:45
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."recorded" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["recorded", 1], ["published", 0]]
+  ↳ app/views/shows/show.html.erb:52
+  [1m[36mGuest Load (0.1ms)[0m  [1m[34mSELECT  "guests".* FROM "guests" WHERE "guests"."interview_id" = ? LIMIT ?[0m  [["interview_id", 1], ["LIMIT", 1]]
+  ↳ app/views/shows/show.html.erb:53
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["published", 1]]
+  ↳ app/views/shows/show.html.erb:59
+  Rendered shows/show.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 23ms (Views: 19.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/hosts/1/shows/1/interviews/1" for 127.0.0.1 at 2020-02-21 09:03:42 -0700
+Processing by InterviewsController#show as HTML
+  Parameters: {"host_id"=>"1", "show_id"=>"1", "id"=>"1"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:90
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:91
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT  "interviews".* FROM "interviews" WHERE "interviews"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:92
+  Rendering interviews/show.html.erb within layouts/application
+  [1m[36mGuest Load (0.1ms)[0m  [1m[34mSELECT  "guests".* FROM "guests" WHERE "guests"."interview_id" = ? LIMIT ?[0m  [["interview_id", 1], ["LIMIT", 1]]
+  ↳ app/views/interviews/_int-info.html.erb:21
+  Rendered interviews/_int-info.html.erb (2.5ms)
+  Rendered interviews/show.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 22ms (Views: 18.7ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/hosts/1/shows/1/interviews/1" for 127.0.0.1 at 2020-02-21 09:03:46 -0700
+Processing by InterviewsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"PdBP61dG45KfInDdxxNW8JwVwC+pjpKnwVbOzhzJrqLaZh1GYjQL0OFGHhMjWyHN1PPUCmsvuQlaRzaGzjVRXg==", "interview"=>{"recorded"=>"1", "published"=>"1"}, "commit"=>"Update Interview", "host_id"=>"1", "show_id"=>"1", "id"=>"1"}
+  [1m[36mHost Load (0.2ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:90
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:91
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT  "interviews".* FROM "interviews" WHERE "interviews"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:92
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/interviews_controller.rb:65
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:65
+  [1m[36mInterview Update (0.2ms)[0m  [1m[33mUPDATE "interviews" SET "published" = ? WHERE "interviews"."id" = ?[0m  [["published", 1], ["id", 1]]
+  ↳ app/controllers/interviews_controller.rb:65
+  [1m[35m (7.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/interviews_controller.rb:65
+Redirected to http://localhost:3000/hosts/1/shows/1
+Completed 302 Found in 15ms (ActiveRecord: 8.5ms)
+
+
+Started GET "/hosts/1/shows/1" for 127.0.0.1 at 2020-02-21 09:03:46 -0700
+Processing by ShowsController#show as HTML
+  Parameters: {"host_id"=>"1", "id"=>"1"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:57
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:58
+  Rendering shows/show.html.erb within layouts/application
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."recorded" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["recorded", 0], ["published", 0]]
+  ↳ app/views/shows/show.html.erb:45
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."recorded" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["recorded", 1], ["published", 0]]
+  ↳ app/views/shows/show.html.erb:52
+  [1m[36mInterview Load (0.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."show_id" = ? AND "interviews"."published" = ?[0m  [["show_id", 1], ["published", 1]]
+  ↳ app/views/shows/show.html.erb:59
+  [1m[36mGuest Load (0.1ms)[0m  [1m[34mSELECT  "guests".* FROM "guests" WHERE "guests"."interview_id" = ? LIMIT ?[0m  [["interview_id", 1], ["LIMIT", 1]]
+  ↳ app/views/shows/show.html.erb:60
+  Rendered shows/show.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 21ms (Views: 18.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/hosts/1/shows/1/interviews/new" for 127.0.0.1 at 2020-02-21 09:03:56 -0700
+Processing by InterviewsController#new as HTML
+  Parameters: {"host_id"=>"1", "show_id"=>"1"}
+  [1m[36mHost Load (0.2ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:85
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:86
+  Rendering interviews/new.html.erb within layouts/application
+  Rendered interviews/_new-int.html.erb (3.9ms)
+  Rendered interviews/new.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 20ms (Views: 17.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/hosts/1/shows/1/interviews/new" for 127.0.0.1 at 2020-02-21 09:05:03 -0700
+Processing by InterviewsController#new as HTML
+  Parameters: {"host_id"=>"1", "show_id"=>"1"}
+  [1m[36mHost Load (0.2ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:85
+  [1m[36mShow Load (0.2ms)[0m  [1m[34mSELECT  "shows".* FROM "shows" WHERE "shows"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:86
+  Rendering interviews/new.html.erb within layouts/application
+  Rendered interviews/_new-int.html.erb (7.1ms)
+  Rendered interviews/new.html.erb within layouts/application (9.7ms)
+Completed 200 OK in 35ms (Views: 29.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/hosts/1" for 127.0.0.1 at 2020-02-21 09:05:27 -0700
+Processing by HostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mHost Load (0.3ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/hosts_controller.rb:54
+  Rendering hosts/show.html.erb within layouts/application
+  [1m[36mShow Load (0.2ms)[0m  [1m[34mSELECT "shows".* FROM "shows" WHERE "shows"."host_id" = ?[0m  [["host_id", 1]]
+  ↳ app/views/hosts/show.html.erb:27
+  Rendered hosts/show.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 27ms (Views: 23.6ms | ActiveRecord: 0.5ms)
+
+
+Started DELETE "/hosts/1" for 127.0.0.1 at 2020-02-21 09:05:31 -0700
+Processing by HostsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"Dr/LHfbUnVMoNaCdRSF8KrfmgNrCR0Ej4pDnsQ22bEjQgdhKkHvHl6T2zkF0jqnCZKmgtt9xFuIEVjl91dawuw==", "id"=>"1"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/hosts_controller.rb:54
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/hosts_controller.rb:44
+  [1m[36mHost Destroy (0.2ms)[0m  [1m[31mDELETE FROM "hosts" WHERE "hosts"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/hosts_controller.rb:44
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/hosts_controller.rb:44
+Redirected to http://localhost:3000/
+Completed 302 Found in 10ms (ActiveRecord: 6.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-02-21 09:05:31 -0700
+Processing by WelcomeController#home as HTML
+  Rendering welcome/home.html.erb within layouts/application
+  Rendered welcome/_links.html.erb (0.5ms)
+  Rendered welcome/home.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 13ms (Views: 12.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2020-02-21 09:06:18 -0700
+Processing by HostsController#new as HTML
+  Rendering hosts/new.html.erb within layouts/application
+  Rendered hosts/_new-host.html.erb (1.8ms)
+  Rendered hosts/new.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 38ms (Views: 36.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/hosts" for 127.0.0.1 at 2020-02-21 09:06:31 -0700
+Processing by HostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8Fwx1tDVdIDYbT2wzUA4FJjCKM/RQDJ4cBAnsJhid9qXWI7wBdf9d4BzicUraSh988xgsl7/CTX+aU0WlajZ/A==", "host"=>{"name"=>"jimmy", "email"=>"jimmy@example.com", "password"=>"[FILTERED]"}, "commit"=>"Create Host"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/hosts_controller.rb:26
+  [1m[36mHost Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "hosts" WHERE "hosts"."email" = ? LIMIT ?[0m  [["email", "jimmy@example.com"], ["LIMIT", 1]]
+  ↳ app/controllers/hosts_controller.rb:26
+  [1m[36mHost Create (0.2ms)[0m  [1m[32mINSERT INTO "hosts" ("name", "email", "password_digest") VALUES (?, ?, ?)[0m  [["name", "jimmy"], ["email", "jimmy@example.com"], ["password_digest", "$2a$12$hj0MZW19gcVhNf03Uur26.cy6..e0NvZVsoHD0hsYmHXoNr7Io6QC"]]
+  ↳ app/controllers/hosts_controller.rb:26
+  [1m[35m (8.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/hosts_controller.rb:26
+Redirected to http://localhost:3000/login
+Completed 302 Found in 231ms (ActiveRecord: 8.5ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2020-02-21 09:06:31 -0700
+Processing by SessionsController#new as HTML
+  Rendering hosts/login.html.erb within layouts/application
+  Rendered hosts/_login-form.html.erb (0.5ms)
+  Rendered hosts/login.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 14ms (Views: 13.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2020-02-21 09:06:42 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hhYy0fKzpwlMYURp7C0d5M5H2TeImDQi49cNFR8D8iXhEo33J7Eu/hR/8BwKBA2NpUmRSgcnD29trmezEslcAw==", "host"=>{"email"=>"jimmy@example.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mHost Load (0.2ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."email" = ? LIMIT ?[0m  [["email", "jimmy@example.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:55
+Redirected to http://localhost:3000/hosts/2
+Completed 302 Found in 220ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/hosts/2" for 127.0.0.1 at 2020-02-21 09:06:43 -0700
+Processing by HostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/hosts_controller.rb:54
+  Rendering hosts/show.html.erb within layouts/application
+  [1m[36mShow Load (0.0ms)[0m  [1m[34mSELECT "shows".* FROM "shows" WHERE "shows"."host_id" = ?[0m  [["host_id", 2]]
+  ↳ app/views/hosts/show.html.erb:27
+  Rendered hosts/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 15ms (Views: 13.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/hosts/2/shows/new" for 127.0.0.1 at 2020-02-21 09:06:45 -0700
+Processing by ShowsController#new as HTML
+  Parameters: {"host_id"=>"2"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:22
+  Rendering shows/new.html.erb within layouts/application
+  Rendered shows/_new-form.html.erb (3.7ms)
+  Rendered shows/new.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 27ms (Views: 25.2ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/hosts/2/shows" for 127.0.0.1 at 2020-02-21 09:07:06 -0700
+Processing by ShowsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pn8wMPFDDHMKoTZ5QYmrEPOTNqJMumB7t1JFP+AZfO7Be48WJEGFhFK/ggynoLt5mJ1+38MFWzY5Ky+Z7dPSyA==", "show"=>{"title"=>"test show", "description"=>"whatever", "category"=>"something", "url"=>"noteuheon", "duration"=>"60 min's"}, "commit"=>"Create Show", "host_id"=>"2"}
+  [1m[36mHost Load (0.2ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:31
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/shows_controller.rb:33
+  [1m[36mShow Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "shows" WHERE "shows"."title" = ? LIMIT ?[0m  [["title", "test show"], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:33
+  [1m[36mShow Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "shows" WHERE "shows"."url" = ? LIMIT ?[0m  [["url", "noteuheon"], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:33
+  [1m[36mShow Create (0.2ms)[0m  [1m[32mINSERT INTO "shows" ("title", "description", "category", "url", "duration") VALUES (?, ?, ?, ?, ?)[0m  [["title", "test show"], ["description", "whatever"], ["category", "something"], ["url", "noteuheon"], ["duration", "60 min's"]]
+  ↳ app/controllers/shows_controller.rb:33
+  [1m[35m (7.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/shows_controller.rb:33
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/shows_controller.rb:34
+  [1m[36mShow Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "shows" WHERE "shows"."title" = ? AND "shows"."id" != ? LIMIT ?[0m  [["title", "test show"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:34
+  [1m[36mShow Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "shows" WHERE "shows"."url" = ? AND "shows"."id" != ? LIMIT ?[0m  [["url", "noteuheon"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:34
+  [1m[36mShow Update (0.3ms)[0m  [1m[33mUPDATE "shows" SET "host_id" = ? WHERE "shows"."id" = ?[0m  [["host_id", 2], ["id", 2]]
+  ↳ app/controllers/shows_controller.rb:34
+  [1m[35m (8.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/shows_controller.rb:34
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/shows_controller.rb:35
+  [1m[36mHost Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "hosts" WHERE "hosts"."email" = ? AND "hosts"."id" != ? LIMIT ?[0m  [["email", "jimmy@example.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:35
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/shows_controller.rb:35
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/shows_controller.rb:36
+  [1m[36mShow Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "shows" WHERE "shows"."title" = ? AND "shows"."id" != ? LIMIT ?[0m  [["title", "test show"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:36
+  [1m[36mShow Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "shows" WHERE "shows"."url" = ? AND "shows"."id" != ? LIMIT ?[0m  [["url", "noteuheon"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/shows_controller.rb:36
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/shows_controller.rb:36
+Redirected to http://localhost:3000/hosts/2
+Completed 302 Found in 38ms (ActiveRecord: 18.6ms)
+
+
+Started GET "/hosts/2" for 127.0.0.1 at 2020-02-21 09:07:06 -0700
+Processing by HostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mHost Load (0.2ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:22
+  [1m[36mCACHE Host Load (0.0ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/hosts_controller.rb:54
+  Rendering hosts/show.html.erb within layouts/application
+  [1m[36mShow Load (0.1ms)[0m  [1m[34mSELECT "shows".* FROM "shows" WHERE "shows"."host_id" = ?[0m  [["host_id", 2]]
+  ↳ app/views/hosts/show.html.erb:27
+  Rendered hosts/show.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 25ms (Views: 21.8ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/hosts/2" for 127.0.0.1 at 2020-02-21 09:07:18 -0700
+Processing by HostsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"gafPBWSViGCS0MNtbVnFknLvpqudF0ZZ18oJg6cr/w7mo3AjsZcBl8rOdxiLcNX7GeHu1hKofRRZs2MlquFRKA==", "id"=>"2"}
+  [1m[36mHost Load (0.1ms)[0m  [1m[34mSELECT  "hosts".* FROM "hosts" WHERE "hosts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/hosts_controller.rb:54
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/hosts_controller.rb:44
+  [1m[36mHost Destroy (0.2ms)[0m  [1m[31mDELETE FROM "hosts" WHERE "hosts"."id" = ?[0m  [["id", 2]]
+  ↳ app/controllers/hosts_controller.rb:44
+  [1m[35m (4.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/hosts_controller.rb:44
+Redirected to http://localhost:3000/
+Completed 302 Found in 8ms (ActiveRecord: 4.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-02-21 09:07:18 -0700
+Processing by WelcomeController#home as HTML
+  Rendering welcome/home.html.erb within layouts/application
+  Rendered welcome/_links.html.erb (0.5ms)
+  Rendered welcome/home.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 14ms (Views: 13.1ms | ActiveRecord: 0.0ms)
+
+

@@ -28,7 +28,8 @@ class ShowsController < ApplicationController
 
   def create
     if logged_in?
-      grab_host_show
+      @host = Host.find(session[:host_id])
+      @show = Show.new(show_params)
       if @show.save
         @host.shows << @show
         @host.save
@@ -44,7 +45,8 @@ class ShowsController < ApplicationController
 
   def edit
     if logged_in?
-      grab_host_show
+      @host = Host.find(session[:host_id])
+      @show = Show.find(params[:id])
     else
       redirect_to root_path
     end
@@ -52,7 +54,8 @@ class ShowsController < ApplicationController
 
   def show
     if logged_in?
-      grab_host_show
+      @host = Host.find(session[:host_id])
+      @show = Show.find(params[:id])
       @interview = Interview.new
       @interviews = @show.interviews
     else
@@ -62,7 +65,8 @@ class ShowsController < ApplicationController
 
   def update
     if logged_in?
-      grab_host_show
+      @host = Host.find(session[:host_id])
+      @show = Show.find(params[:id])
       @show.update_attributes(show_params)
       redirect_to host_path(@host)
     else
@@ -72,7 +76,8 @@ class ShowsController < ApplicationController
 
   def destroy
     if logged_in?
-      grab_host_show
+      @host = Host.find(session[:host_id])
+      @show = Show.find(params[:id])
       @show.destroy
       redirect_to host_path(@host)
     else
@@ -85,8 +90,4 @@ class ShowsController < ApplicationController
     params.require(:show).permit(:title, :description, :category, :url, :duration)
   end
 
-  def grab_host_show
-    @host = Host.find(session[:host_id])
-    @show = Show.find(params[:id])
-  end
 end
